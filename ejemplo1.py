@@ -1,4 +1,6 @@
-# Ejemplo 1 de Web Scraping
+'''
+Ejemplo 1 de Web Scraping
+'''
 
 import requests
 import json
@@ -11,8 +13,14 @@ def fetch_teams(url):
     response = requests.get(url)
 
     if response.status_code == 200:
+        # Obtengo el contenido en forma de html con el parser
         soup = BeautifulSoup(response.content, 'html.parser')
+
+        # obtengo la etiqueta (tag) y la clase
+        # obtengo un iterador
         results = soup.find_all('span', class_='nombre-equipo')
+
+        print(results)
 
         for result in results:
             if count < max_value:
